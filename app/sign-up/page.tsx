@@ -15,9 +15,11 @@ const SignupPage = () => {
   const { error, isLoading, signup } = useAuth();
   const location = useRouter();
   const router = useRouter();
+
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      router.push('/profile/me');
+    const token = localStorage.getItem('token');
+    if (token) {
+      router.push(PROFILE_ENDPOINT);
     }
   }, [router]);
 

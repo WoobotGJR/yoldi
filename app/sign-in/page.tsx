@@ -9,14 +9,16 @@ import Button from '@/shared/ui/Button/Button';
 import styles from './SigninPage.module.css';
 import useAuth from '@/hooks/useAuth';
 import { useRouter } from 'next/navigation';
+import { PROFILE_ENDPOINT } from '@/utils/constants/endpoints';
 
 const SigninPage = () => {
   const { error, isLoading, login } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      router.push('/profile/me');
+    const token = localStorage.getItem('token');
+    if (token) {
+      router.push(PROFILE_ENDPOINT);
     }
   }, [router]);
 

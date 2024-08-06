@@ -1,5 +1,6 @@
 import { BASE_URL } from '@/utils/constants/baseUrl';
 import { IUser } from '@/utils/types/Interfaces';
+import { useEffect, useState } from 'react';
 import useSWR, { useSWRConfig } from 'swr';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -52,6 +53,13 @@ const useUser = () => {
     isLoading,
     error,
   } = useSWR<IUser>(`${BASE_URL}/profile`, fetcher);
+
+  const [isClient, setIsClient] = useState(false); // Track if we are on the client side
+
+  useEffect(() => {
+    // Check if we are on the client side
+    setIsClient(true);
+  }, []);
 
   const uploadImage = async (file: File) => {
     const formData = new FormData();

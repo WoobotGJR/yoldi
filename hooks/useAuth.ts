@@ -4,7 +4,7 @@ import {
   SiGN_IN_ENDPOINT,
 } from '@/utils/constants/endpoints';
 import { useRouter } from 'next/navigation';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useSWRConfig } from 'swr';
 
 const useAuth = () => {
@@ -12,6 +12,11 @@ const useAuth = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const authenticate = useCallback(async (url: string, body: object) => {
     setIsLoading(true);
