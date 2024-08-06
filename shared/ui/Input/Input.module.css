@@ -48,7 +48,12 @@
   right: 25.75px;
   top: 50%;
   transform: translateY(-50%);
+  border-radius: 50%;
   cursor: pointer;
+}
+
+.passwordIcon:hover {
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .default {
