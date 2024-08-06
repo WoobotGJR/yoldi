@@ -33,7 +33,7 @@ const useAuth = () => {
       });
 
       if (!response.ok) {
-        const error = new Error('An error occurred while fetching the data.');
+        const error = new Error('Произошла ошибка авторизации');
         throw error;
       }
       const data = await response.json();

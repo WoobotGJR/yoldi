@@ -27,18 +27,11 @@ const SignupPage = () => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData.entries());
-    const email =
-      data.email instanceof File ? data.email.name : data.email.toString();
-    const password =
-      data.password instanceof File
-        ? data.password.name
-        : data.password.toString();
-    const name =
-      data.name instanceof File ? data.name.name : data.name.toString();
+    const email = data.email as string;
+    const password = data.password as string;
+    const name = data.name as string;
 
     signup(email, name, password);
-
-    location.push(PROFILE_ENDPOINT);
   };
 
   const inputFields = [

@@ -26,12 +26,8 @@ const SigninPage = () => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData.entries());
-    const email =
-      data.email instanceof File ? data.email.name : data.email.toString();
-    const password =
-      data.password instanceof File
-        ? data.password.name
-        : data.password.toString();
+    const email = data.email as string;
+    const password = data.password as string;
 
     login(email, password);
   };
