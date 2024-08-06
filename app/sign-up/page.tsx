@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Form from '@/shared/components/Form/Form';
 import { userIcon, mailIcon, lockIcon } from '@/shared/icons';
 import Input from '@/shared/ui/Input/Input';
@@ -15,10 +15,11 @@ const SignupPage = () => {
   const { error, isLoading, signup } = useAuth();
   const location = useRouter();
   const router = useRouter();
-  if (localStorage.getItem('token')) {
-    router.push('/profile/me');
-    return null;
-  }
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      router.push('/profile/me');
+    }
+  }, [router]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

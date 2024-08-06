@@ -17,14 +17,6 @@ const withAuth = (Component: React.FC) => {
 
     const isAuthenticated = !!data;
 
-    // useEffect(() => {
-    //   if (isAuthenticated) {
-    //     getUser('api/user');
-    //   } else {
-    //     router.push(SiGN_IN_ENDPOINT);
-    //   }
-    // }, []);
-
     if (!isAuthenticated) {
       router.push(SiGN_IN_ENDPOINT);
       return null;
