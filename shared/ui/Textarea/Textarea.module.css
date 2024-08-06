@@ -1,0 +1,53 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 25.6px;
+}
+
+.textarea {
+  width: 100%;
+  padding: 12px 20px;
+  border: 1px solid var(--strokes-secondary);
+  border-radius: 5px;
+  font-size: 16px;
+  line-height: 25.6px;
+  font-weight: 400;
+  min-height: 154px;
+  font-family: inherit;
+  resize: none;
+}
+
+.textarea:focus {
+  outline: 1px var(--input-outline-focus-color) solid;
+}
+
+.textarea::-webkit-scrollbar {
+  width: 7px;
+}
+
+.textarea::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+.textarea::-webkit-scrollbar-thumb {
+  background-color: var(--strokes-secondary);
+  border-radius: 20px;
+}
+
+.textarea::-webkit-scrollbar-thumb:hover {
+  background-color: var(--strokes-primary);
+  cursor: ns-resize;
+}
+
+@media screen and (max-width: 600px) {
+  .textarea {
+    min-height: 284px;
+  }
+}

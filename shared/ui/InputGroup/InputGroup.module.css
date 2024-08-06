@@ -1,0 +1,53 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+}
+
+.label {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 25.6px;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 25.6px;
+  color: var(--text-secondary);
+  text-align: center;
+  white-space: nowrap;
+  background-color: #e9ecef;
+  outline: 1px var(--input-outline-color) solid;
+  border-radius: 0.25rem;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.input {
+  width: 100%;
+  border: none;
+  padding: 12px 20px;
+  outline: 1px var(--input-outline-color) solid;
+  border-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+
+  font-size: 16px;
+  line-height: 25.6px;
+  font-weight: 400;
+}
+
+.input:focus {
+  outline: 1px var(--input-outline-focus-color) solid;
+}

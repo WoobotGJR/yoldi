@@ -1,0 +1,12 @@
+.list {
+  flex-direction: column;
+  display: flex;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.link:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

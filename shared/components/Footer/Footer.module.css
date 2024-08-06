@@ -1,0 +1,20 @@
+.footer {
+  background-color: #fff;
+  padding: 22px 20px;
+  text-align: center;
+  margin-top: auto;
+  border-top: 1px solid var(--strokes-secondary);
+}
+
+.text {
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 25.6px;
+  font-weight: 400;
+}
+
+.link {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
