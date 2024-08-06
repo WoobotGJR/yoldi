@@ -15,9 +15,12 @@ const AccountList: React.FC = () => {
   return (
     <div className={styles.list}>
       {data?.map((item, index) => (
-        <Link className={styles.link} href={`/profile/${item.slug}`}>
+        <Link
+          key={item.slug}
+          className={styles.link}
+          href={`/profile/${item.slug}`}
+        >
           <ListItem
-            key={item.slug}
             email={item.email}
             name={item.name}
             imageUrl={item.image?.url}

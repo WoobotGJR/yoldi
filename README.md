@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Yoldi Agency - Профиль пользователя
 
-## Getting Started
+Это проект на Next.js, включающий страницы аутентификации и профиля пользователя. Проект использует `useSWR` для получения данных и управления состоянием.
+Делой на [vercel](https://yoldi-pi.vercel.app/sign-in)
 
-First, run the development server:
+## Содержание
 
-```bash
+- [Технологии](#технологии)
+- [Начало работы](#начало-работы)
+- [Интеграция с API](#интеграция-с-api)
+- [Использование](#использование)
+
+## Технологии
+
+- [Next.js](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [useSWR](https://swr.vercel.app/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [CSS Modules](https://github.com/css-modules/css-modules)
+- [Vercel](https://vercel.com/)
+
+## Начало работы
+
+Следуйте этим шагам для начала работы с проектом:
+
+### Требования
+
+Убедитесь, что у вас установлено следующее ПО:
+
+- [Node.js](https://nodejs.org/en/) (версии 14 или выше)
+- [npm](https://www.npmjs.com/) или [yarn](https://yarnpkg.com/)
+
+### Установка
+
+1. Клонируйте репозиторий:
+
+   ```sh
+   git clone https://github.com/WoobotGJR/yoldi
+   cd yoldi
+   ```
+
+````
+
+2. Установите зависимости:
+
+   ```sh
+   npm install
+   # или
+   yarn install
+   ```
+
+### Запуск сервера разработки
+
+Чтобы запустить сервер разработки, выполните:
+
+```sh
 npm run dev
-# or
+# или
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Откройте [http://localhost:3000](http://localhost:3000) в вашем браузере для просмотра результата.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Интеграция с API
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Этот проект взаимодействует с API Yoldi Agency для аутентификации пользователей и управления профилем.
 
-## Learn More
+### Использование с useSWR
 
-To learn more about Next.js, take a look at the following resources:
+Проект использует `useSWR` для получения данных и управления состоянием. Предоставляются пользовательские хуки для операций аутентификации и профиля.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Использование
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Запуск проекта
 
-## Deploy on Vercel
+Чтобы запустить проект локально:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```sh
+npm run dev
+# или
+yarn dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Сборка для продакшена
+
+Чтобы собрать проект для продакшена:
+
+```sh
+npm run build
+# или
+yarn build
+```
+
+### Развертывание
+
+Этот проект настроен для развертывания на [Vercel](https://vercel.com/). Следуйте документации Vercel для шагов по развертыванию.
+````
