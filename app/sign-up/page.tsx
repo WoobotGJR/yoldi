@@ -46,7 +46,7 @@ const SignupPage = () => {
       name: 'name',
       alt: 'user-logo',
       logo: userIcon,
-      minlength: 6,
+      minLength: 6,
       maxLength: 20,
       required: true,
     },
@@ -56,7 +56,7 @@ const SignupPage = () => {
       name: 'email',
       alt: 'mail-logo',
       logo: mailIcon,
-      minlength: 6,
+      minLength: 6,
       maxLength: 20,
       required: true,
     },
@@ -66,7 +66,7 @@ const SignupPage = () => {
       name: 'password',
       alt: 'lock-logo',
       logo: lockIcon,
-      minlength: 6,
+      minLength: 6,
       maxLength: 20,
       required: true,
     },
@@ -86,6 +86,9 @@ const SignupPage = () => {
           alt={input.alt}
           name={input.name}
           logo={input.logo}
+          minLength={input.minLength}
+          maxLength={input.maxLength}
+          required={input.required}
         />
       ))}
       {error?.message && <p className={styles.error}>{error?.message}</p>}
