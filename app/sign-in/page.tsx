@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Form from '@/shared/components/Form/Form';
 import { mailIcon, lockIcon } from '@/shared/icons';
 import Input from '@/shared/ui/Input/Input';
@@ -13,6 +13,7 @@ import { PROFILE_ENDPOINT } from '@/utils/constants/endpoints';
 
 const SigninPage = () => {
   const { error, isLoading, login } = useAuth();
+  const [isFormValid, setIsFormValid] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -30,6 +31,10 @@ const SigninPage = () => {
     const password = data.password as string;
 
     login(email, password);
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLFormElement>) => {
+    setIsFormValid(event.currentTarget.checkValidity());
   };
 
   const inputFields = [
@@ -56,7 +61,11 @@ const SigninPage = () => {
   ];
 
   return (
-    <Form onSubmit={handleSubmit} title="Вход в Yoldi Agency">
+    <Form
+      onSubmit={handleSubmit}
+      onChange={handleInputChange}
+      title="Вход в Yoldi Agency"
+    >
       {inputFields.map((input) => (
         <Input
           key={input.name}
@@ -74,7 +83,12 @@ const SigninPage = () => {
         <p className={styles.error}>Неправильный пароль или email</p>
       )}
 
-      <Button className={styles.button} type="submit" variant="black">
+      <Button
+        disabled={!isFormValid || isLoading}
+        className={styles.button}
+        type="submit"
+        variant="black"
+      >
         Войти
       </Button>
     </Form>

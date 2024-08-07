@@ -1,4 +1,3 @@
-import Avatar from '@/shared/components/Avatar/Avatar';
 import styles from './AccountsListPage.module.css';
 import AccountList from '@/shared/components/AccountsList/AccountsList';
 

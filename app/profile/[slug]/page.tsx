@@ -49,4 +49,4 @@ const ProfilePage = () => {
     </div>
   );
 };
-export default withAuth(ProfilePage);
+export default ProfilePage;

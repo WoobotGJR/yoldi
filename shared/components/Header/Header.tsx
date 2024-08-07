@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import styles from './Header.module.css';
 import Image from 'next/image';
@@ -23,12 +23,22 @@ const Header = () => {
   });
   const { user } = useUser();
 
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
+
   const isAuth = !!data;
 
   return (
     <header className={styles.header}>
       <div className={styles.logoWrapper}>
-        <Link href={isAuth ? ACCOUNTS_LIST_ENDPOINT : SiGN_IN_ENDPOINT}>
+        <Link href={ACCOUNTS_LIST_ENDPOINT}>
           <Image src={mainLogo} alt="Yoldi Agency Logo" />
         </Link>
         <p className={styles.text}>

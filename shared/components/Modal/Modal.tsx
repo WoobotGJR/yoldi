@@ -14,11 +14,19 @@ interface ModalProps {
   setIsVisible: (isVisible: boolean) => void;
 }
 const Modal: React.FC<ModalProps> = ({ isVisible, setIsVisible }) => {
-  const { user, updateUserInfo } = useUser();
+  const { user, updateUserInfo, isLoading } = useUser();
+  const [isFormValid, setIsFormValid] = useState(false);
   const [name, setName] = useState(user?.name || '');
   const [slug, setSlug] = useState(user?.slug || '');
   const [description, setDescription] = useState(user?.description || '');
   const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setName(user?.name || '');
+    setSlug(user?.slug || '');
+    setDescription(user?.description || '');
+    setIsFormValid(false);
+  }, [user, isVisible]);
 
   // Close modal by pressing escape
   const onClose = useCallback((e: KeyboardEvent) => {
@@ -52,17 +60,19 @@ const Modal: React.FC<ModalProps> = ({ isVisible, setIsVisible }) => {
     };
   }, [isVisible]);
 
+  const handleInputChange = (event: React.ChangeEvent<HTMLFormElement>) => {
+    setIsFormValid(event.currentTarget.checkValidity());
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Сохранение изменений (например, отправка данных на сервер)
     const updatedUser = {
       name,
       slug,
       description,
-      // добавьте другие необходимые поля, например, imageId, если нужно
     };
     try {
-      await updateUserInfo(updatedUser); // Обновление данных пользователя
+      await updateUserInfo(updatedUser);
       setIsVisible(false);
     } catch (error) {
       console.error('Failed to update user:', error);
@@ -73,7 +83,11 @@ const Modal: React.FC<ModalProps> = ({ isVisible, setIsVisible }) => {
     <div className={clsx(styles.overlay, isVisible && styles.visible)}>
       <div className={styles.modal} ref={modalRef}>
         <div className={styles.title}>Редактировать профиль</div>
-        <form className={styles.content} onSubmit={handleSubmit}>
+        <form
+          onChange={handleInputChange}
+          className={styles.content}
+          onSubmit={handleSubmit}
+        >
           <Input
             variant="default"
             type="text"
@@ -81,17 +95,17 @@ const Modal: React.FC<ModalProps> = ({ isVisible, setIsVisible }) => {
             name="name"
             id="name"
             labelText="Имя"
-            value={name || user?.name}
+            value={name || user?.name || ''}
             onChange={(e) => setName(e.target.value)}
           />
           <InputGroup
-            value={slug || user?.slug}
+            value={slug || user?.slug || ''}
             id="profile-address"
             staticText="Адрес профиля"
             onChange={(e) => setSlug(e.target.value)}
           />
           <Textarea
-            value={description || user?.description}
+            value={description || user?.description || ''}
             placeholder="Расскажите о себе"
             labelText="Описание"
             onChange={(e) => setDescription(e.target.value)}
@@ -105,7 +119,12 @@ const Modal: React.FC<ModalProps> = ({ isVisible, setIsVisible }) => {
             >
               Отмена
             </Button>
-            <Button className={styles.button} type="submit" variant="black">
+            <Button
+              disabled={!isFormValid || isLoading}
+              className={styles.button}
+              type="submit"
+              variant="black"
+            >
               Сохранить
             </Button>
           </div>

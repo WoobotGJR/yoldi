@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Form from '@/shared/components/Form/Form';
 import { userIcon, mailIcon, lockIcon } from '@/shared/icons';
 import Input from '@/shared/ui/Input/Input';
@@ -13,6 +13,7 @@ import { PROFILE_ENDPOINT } from '@/utils/constants/endpoints';
 
 const SignupPage = () => {
   const { error, isLoading, signup } = useAuth();
+  const [isFormValid, setIsFormValid] = useState(false);
   const location = useRouter();
   const router = useRouter();
 
@@ -22,6 +23,10 @@ const SignupPage = () => {
       router.push(PROFILE_ENDPOINT);
     }
   }, [router]);
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLFormElement>) => {
+    setIsFormValid(event.currentTarget.checkValidity());
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -68,7 +73,11 @@ const SignupPage = () => {
   ];
 
   return (
-    <Form onSubmit={handleSubmit} title="Регистрация в Yoldi Agency">
+    <Form
+      onSubmit={handleSubmit}
+      onChange={handleInputChange}
+      title="Регистрация в Yoldi Agency"
+    >
       {inputFields.map((input) => (
         <Input
           key={input.name}
@@ -80,7 +89,12 @@ const SignupPage = () => {
         />
       ))}
       {error?.message && <p className={styles.error}>{error?.message}</p>}
-      <Button className={styles.button} type="submit" variant="black">
+      <Button
+        disabled={!isFormValid || isLoading}
+        className={styles.button}
+        type="submit"
+        variant="black"
+      >
         Создать аккаунт
       </Button>
     </Form>

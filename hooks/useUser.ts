@@ -25,7 +25,6 @@ const fetcher = (url: string) => {
 const updateProfile = async (data: {
   name: string;
   imageId: string;
-  password: string;
   slug: string;
   coverId: string;
   description: string;
@@ -78,9 +77,8 @@ const useUser = () => {
     await updateProfile({
       name: user?.name || '',
       imageId: id,
-      password: 'asdasd', // ??????
       slug: user?.slug || '',
-      coverId: user?.cover.id || uuidv4(),
+      coverId: user?.cover?.id || uuidv4(),
       description: user?.description || '',
     });
 
@@ -104,7 +102,6 @@ const useUser = () => {
     await updateProfile({
       name: user?.name || '',
       imageId: user?.image?.id ?? uuidv4(),
-      password: 'asdasd', // ???????
       slug: user?.slug || '',
       coverId: id || uuidv4(),
       description: user?.description || '',
@@ -120,10 +117,9 @@ const useUser = () => {
   }) => {
     await updateProfile({
       name: data.name || user?.name || '',
-      imageId: user?.image.id || uuidv4(),
-      password: 'asdasd', // ?????
+      imageId: user?.image?.id || uuidv4(),
       slug: data.slug || user?.slug || '',
-      coverId: user?.cover.id || uuidv4(),
+      coverId: user?.cover?.id || uuidv4(),
       description: data.description || user?.description || '',
     });
     mutate(`${BASE_URL}/profile`);
